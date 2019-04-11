@@ -13,86 +13,86 @@ GLuint mainVAO;
 
 void OpenGLWindow::initializeScene()
 {
-	glClearColor(0.0f, 0.5f, 1.0f, 1.0f);
+  glClearColor(0.0f, 0.5f, 1.0f, 1.0f);
 
-	vertexShader.loadShaderFromFile("data/shaders/tut003/shader.vert", GL_VERTEX_SHADER);
-	fragmentShader.loadShaderFromFile("data/shaders/tut003/shader.frag", GL_FRAGMENT_SHADER);
+  vertexShader.loadShaderFromFile("data/shaders/tut003/shader.vert", GL_VERTEX_SHADER);
+  fragmentShader.loadShaderFromFile("data/shaders/tut003/shader.frag", GL_FRAGMENT_SHADER);
 
-	if (!vertexShader.isLoaded() || !fragmentShader.isLoaded())
-	{
-		closeWindow(true);
-		return;
-	}
+  if (!vertexShader.isLoaded() || !fragmentShader.isLoaded())
+  {
+    closeWindow(true);
+    return;
+  }
 
-	mainProgram.createProgram();
-	mainProgram.addShaderToProgram(vertexShader);
-	mainProgram.addShaderToProgram(fragmentShader);
+  mainProgram.createProgram();
+  mainProgram.addShaderToProgram(vertexShader);
+  mainProgram.addShaderToProgram(fragmentShader);
 
-	if (!mainProgram.linkProgram())
-	{
-		closeWindow(true);
-		return;
-	}
+  if (!mainProgram.linkProgram())
+  {
+    closeWindow(true);
+    return;
+  }
 
-	glGenVertexArrays(1, &mainVAO); // Creates one Vertex Array Object
-	glBindVertexArray(mainVAO);
+  glGenVertexArrays(1, &mainVAO); // Creates one Vertex Array Object
+  glBindVertexArray(mainVAO);
 
-	glm::vec3 vTriangle[] = { glm::vec3(-0.4f, 0.1f, 0.0f), glm::vec3(0.4f, 0.1f, 0.0f), glm::vec3(0.0f, 0.7f, 0.0f) };
-	glm::vec3 vTriangleColors[] = { glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f),glm::vec3(0.0f, 0.0f, 1.0f) };
+  glm::vec3 vTriangle[] = { glm::vec3(-0.4f, 0.1f, 0.0f), glm::vec3(0.4f, 0.1f, 0.0f), glm::vec3(0.0f, 0.7f, 0.0f) };
+  glm::vec3 vTriangleColors[] = { glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f),glm::vec3(0.0f, 0.0f, 1.0f) };
 
-	glm::vec3 vQuad[] = { glm::vec3(-0.2f, -0.1f, 0.0f), glm::vec3(-0.2f, -0.6f, 0.0f), glm::vec3(0.2f, -0.1f, 0.0f), glm::vec3(0.2f, -0.6f, 0.0f) };
-	glm::vec3 vQuadColors[] = { glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(1.0f, 0.5f, 0.0f) };
-	
-	shapesVBO.createVBO();
-	shapesVBO.bindVBO();
-	shapesVBO.addData(vTriangle, sizeof(vTriangle));
-	shapesVBO.addData(vQuad, sizeof(vQuad));
-	shapesVBO.uploadDataToGPU(GL_STATIC_DRAW);
+  glm::vec3 vQuad[] = { glm::vec3(-0.2f, -0.1f, 0.0f), glm::vec3(-0.2f, -0.6f, 0.0f), glm::vec3(0.2f, -0.1f, 0.0f), glm::vec3(0.2f, -0.6f, 0.0f) };
+  glm::vec3 vQuadColors[] = { glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(1.0f, 0.5f, 0.0f) };
 
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), 0);
+  shapesVBO.createVBO();
+  shapesVBO.bindVBO();
+  shapesVBO.addData(vTriangle, sizeof(vTriangle));
+  shapesVBO.addData(vQuad, sizeof(vQuad));
+  shapesVBO.uploadDataToGPU(GL_STATIC_DRAW);
 
-	colorsVBO.createVBO();
-	colorsVBO.bindVBO();
-	colorsVBO.addData(vTriangleColors, sizeof(glm::vec3) * 3);
-	colorsVBO.addData(vQuadColors, sizeof(glm::vec3) * 4);
-	colorsVBO.uploadDataToGPU(GL_STATIC_DRAW);
+  glEnableVertexAttribArray(0);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), 0);
 
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), 0);
+  colorsVBO.createVBO();
+  colorsVBO.bindVBO();
+  colorsVBO.addData(vTriangleColors, sizeof(glm::vec3) * 3);
+  colorsVBO.addData(vQuadColors, sizeof(glm::vec3) * 4);
+  colorsVBO.uploadDataToGPU(GL_STATIC_DRAW);
+
+  glEnableVertexAttribArray(1);
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), 0);
 }
 
 void OpenGLWindow::renderScene()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	mainProgram.useProgram();
-	glBindVertexArray(mainVAO);
+  mainProgram.useProgram();
+  glBindVertexArray(mainVAO);
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-	glDrawArrays(GL_TRIANGLE_STRIP, 3, 4);
+  glDrawArrays(GL_TRIANGLES, 0, 3);
+  glDrawArrays(GL_TRIANGLE_STRIP, 3, 4);
 }
 
 void OpenGLWindow::releaseScene()
 {
-	mainProgram.deleteProgram();
+  mainProgram.deleteProgram();
 
-	vertexShader.deleteShader();
-	fragmentShader.deleteShader();
+  vertexShader.deleteShader();
+  fragmentShader.deleteShader();
 
-	shapesVBO.deleteVBO();
-	colorsVBO.deleteVBO();
+  shapesVBO.deleteVBO();
+  colorsVBO.deleteVBO();
 
-	glDeleteVertexArrays(1, &mainVAO);
+  glDeleteVertexArrays(1, &mainVAO);
 }
 
 void OpenGLWindow::handleInput()
 {
-	if (keyPressedOnce(GLFW_KEY_ESCAPE))
-		closeWindow();
+  if (keyPressedOnce(GLFW_KEY_ESCAPE))
+    closeWindow();
 }
 
 void OpenGLWindow::onWindowSizeChanged(GLFWwindow* window, int width, int height)
 {
-	glViewport(0, 0, width, height);
+  glViewport(0, 0, width, height);
 }

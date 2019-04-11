@@ -11,13 +11,13 @@
 
 /**
   HUD for tutorial 014.
-*/
+  */
 class HUD014 : public HUD
 {
-public:
-	HUD014(const OpenGLWindow& window);
+  public:
+    HUD014(const OpenGLWindow& window);
 
-	/** \brief  Renders HUD. */
-	void renderHUD() const override {} // Don't need this, but had to override, so that class is not abstract
-	void renderHUD(const shader_structs::AmbientLight& ambientLight, const shader_structs::DiffuseLight& diffuseLight) const;
+    /** \brief  Renders HUD. */
+    void renderHUD() const override {} // Don't need this, but had to override, so that class is not abstract
+    void renderHUD(const shader_structs::AmbientLight& ambientLight, const shader_structs::DiffuseLight& diffuseLight) const;
 };

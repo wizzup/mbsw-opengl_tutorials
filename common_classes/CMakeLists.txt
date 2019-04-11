@@ -1,48 +1,77 @@
 add_library(common SHARED
-    # HUD.cpp
-    # HUD.h
+    HUD.cpp
+    HUD.h
     OpenGLWindow.cpp
     OpenGLWindow.h
-    # flyingCamera.cpp
-    # flyingCamera.h
-    # freeTypeFont.cpp
-    # freeTypeFont.h
-    # freeTypeFontManager.cpp
-    # freeTypeFontManager.h
-    # gldebug.h
-    # matrixManager.cpp
-    # matrixManager.h
-    # ostreamUtils.h
-    # sampler.cpp
-    # sampler.h
-    # samplerManager.cpp
-    # samplerManager.h
+    flyingCamera.cpp
+    flyingCamera.h
+    freeTypeFont.cpp
+    freeTypeFont.h
+    freeTypeFontManager.cpp
+    freeTypeFontManager.h
+    gldebug.h
+    matrixManager.cpp
+    matrixManager.h
+    ostreamUtils.h
+    sampler.cpp
+    sampler.h
+    samplerManager.cpp
+    samplerManager.h
     shader.cpp
     shader.h
-    # shaderManager.cpp
-    # shaderManager.h
+    shaderManager.cpp
+    shaderManager.h
     shaderProgram.cpp
     shaderProgram.h
-    # shaderProgramManager.cpp
-    # shaderProgramManager.h
-    # shader_structs
-    # simpleWalkingCamera.cpp
-    # simpleWalkingCamera.h
-    # staticGeometry.cpp
-    # staticGeometry.h
-    # stringUtils.h
-    # texture.cpp
-    # texture.h
-    # textureManager.cpp
-    # textureManager.h
+    shaderProgramManager.cpp
+    shaderProgramManager.h
+    simpleWalkingCamera.cpp
+    simpleWalkingCamera.h
+    staticGeometry.cpp
+    staticGeometry.h
+    stringUtils.h
+    texture.cpp
+    texture.h
+    textureManager.cpp
+    textureManager.h
     uniform.cpp
     uniform.h
     vertexBufferObject.cpp
     vertexBufferObject.h
-    # static_meshes_2D
-    # static_meshes_3D
-    # static_meshes_2D/primitives/quad.cpp
-    # static_meshes_2D/primitives/quad.h
+    shader_structs/ambientLight.cpp
+    shader_structs/ambientLight.h
+    shader_structs/diffuseLight.cpp
+    shader_structs/diffuseLight.h
+    shader_structs/shaderStruct.cpp
+    shader_structs/shaderStruct.h
+    static_meshes_2D/primitives
+    static_meshes_2D/primitives/quad.cpp
+    static_meshes_2D/primitives/quad.h
+    static_meshes_2D/staticMesh2D.cpp
+    static_meshes_2D/staticMesh2D.h
+    static_meshes_3D/house.cpp
+    static_meshes_3D/house.h
+    static_meshes_3D/plainGround.cpp
+    static_meshes_3D/plainGround.h
+    static_meshes_3D/primitives
+    static_meshes_3D/primitives/cube.cpp
+    static_meshes_3D/primitives/cube.h
+    static_meshes_3D/primitives/pyramid.cpp
+    static_meshes_3D/primitives/pyramid.h
+    static_meshes_3D/primitives/torus.cpp
+    static_meshes_3D/primitives/torus.h
+    static_meshes_3D/snowCoveredPlainGround.cpp
+    static_meshes_3D/snowCoveredPlainGround.h
+    static_meshes_3D/staticMesh3D.cpp
+    static_meshes_3D/staticMesh3D.h
+    static_meshes_3D/staticMeshIndexed3D.cpp
+    static_meshes_3D/staticMeshIndexed3D.h
 )
 
-target_include_directories(common PUBLIC ${GLAD_INCLUDE_DIR})
+target_include_directories(common PUBLIC
+  ${GLAD_INCLUDE_DIR}
+  ${STB_DIR}
+  ${FREETYPE_INCLUDE_DIR}
+  )
+
+target_link_libraries(common glad glfw freetype GL)

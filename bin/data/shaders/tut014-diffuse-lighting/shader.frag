@@ -1,4 +1,4 @@
-#version 440 core
+#version 330 core
 
 #include "../lighting/ambientLight.frag"
 #include "../lighting/diffuseLight.frag"

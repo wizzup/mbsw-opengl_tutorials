@@ -6,4 +6,4 @@ add_executable(
 
 target_include_directories(001 PUBLIC ${GLAD_INCLUDE_DIR})
 
-target_link_libraries(001 common glad glfw)
+target_link_libraries(001 common)

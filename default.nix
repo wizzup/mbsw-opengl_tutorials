@@ -13,5 +13,12 @@ stdenv.mkDerivation rec {
     cmake
     glfw
     glm
+
+    # for freetype2
+    pkg-config
+    zlib
+    libpng
+    bzip2
+    harfbuzz
   ];
 }

@@ -9,9 +9,10 @@ Application entry point function. This is Windows version and uses Windows-speci
 int main()
 {
 	const std::string& windowTitle = "004.) Entering Third Dimension - Tutorial by Michal Bubnar (www.mbsoftworks.sk)";
-	int majorVersion = 4;
-	int minorVersion = 4;
-	bool showFullscreen = MessageBox(nullptr, "Would you like to run in fullscreen mode?", "Fullscreen", MB_ICONQUESTION | MB_YESNO) == IDYES;
+	int majorVersion = 3;
+	int minorVersion = 3;
+	// bool showFullscreen = MessageBox(nullptr, "Would you like to run in fullscreen mode?", "Fullscreen", MB_ICONQUESTION | MB_YESNO) == IDYES;
+	bool showFullscreen = false;
 	
 	OpenGLWindow window;
 	if (!window.createOpenGLWindow(windowTitle, majorVersion, minorVersion, showFullscreen))
